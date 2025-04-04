@@ -9,20 +9,21 @@ window.onload = function () {
 
 //https://reqres.in/ API de prueba
 function onceLoaded() {
-    console.log('Iniciando llamada con fetch ...');
+    console.log('1- Iniciando llamada con fetch ...');
     fetch('https://reqres.in/api/users')
         .then(data => {
-            console.log('Se ha recibido la respuesta del servidor...');
+            console.log('1.1 Se ha recibido la respuesta del servidor...');
             return data.json();
         })
         .then(users => {
-            console.log('Se ha acabado de procesar la respuesta del servidor  y se ha convertido a Json...');
+            console.log('1.2 Se ha acabado de procesar la respuesta del servidor  y se ha convertido a Json...');
             data = users.data;
             procesarJSON(data);
         }
         )
-        .catch((err) => console.error("error:", err));
-    console.log('Seguimos procesando de forma asíncrona lo que haya después del fetch...')
+        .catch((err) => console.error("1.3 error:", err));
+    
+    console.log('2-Seguimos procesando de forma asíncrona lo que haya después del fetch...')
 
 }
 
@@ -51,7 +52,7 @@ async function onceLoadedAwait() {
 
 function procesarJSON(data) {
 
-    console.log('Los datos obtenidos son: ' + data);
+    console.log('Los datos obtenidos son: ' + JSON.stringify(data));
 
 
     let lista = document.createElement("ul");
@@ -61,7 +62,7 @@ function procesarJSON(data) {
         lista.appendChild(elem);
     }
 
-    var body = document.getElementById("users");
-    body.innerHTML = "";
-    body.appendChild(lista);
+    var section_users = document.getElementById("users");
+    section_users.innerHTML = "";
+    section_users.appendChild(lista);
 }
